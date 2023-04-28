@@ -31,9 +31,6 @@ client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-// Log in to Discord with your client's token
-client.login(token);
-
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
@@ -55,3 +52,7 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
 	}
 });
+
+// Log in to Discord with your client's token
+client.login(token);
+ 
