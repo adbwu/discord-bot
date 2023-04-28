@@ -42,6 +42,8 @@ for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
 	if (event.once) {
+    //checks if it's a once event or not
+    //uses "..." Rest parameters to accept infinite args, and "..." spread to feed them to the callback
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {
 		client.on(event.name, (...args) => event.execute(...args));
