@@ -13,7 +13,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 //creates map of commands
 client.commands = new Collection();
 
-//use node's
+//use node's fs and path modules to register the commands within folders and add to Collection
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
@@ -39,6 +39,7 @@ client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
+// Listens for interactions and attempts to execute command or logs error
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
