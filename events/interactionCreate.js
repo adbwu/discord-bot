@@ -37,8 +37,7 @@ module.exports = {
 
     timestamps.set(interaction.user.id, now);
     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
-
-    console.log(cooldowns);
+    
     //tries to execute command
 		try {
 			await command.execute(interaction);
