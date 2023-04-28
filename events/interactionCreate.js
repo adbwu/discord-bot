@@ -1,4 +1,6 @@
-const { Events } = require('discord.js');
+const { Events, Collection } = require('discord.js');
+    
+const cooldowns = new Collection;
 
 module.exports = {
   name: Events.InteractionCreate,
@@ -14,8 +16,6 @@ module.exports = {
 			console.error(`No command matching ${interaction.commandName} was found.`);
 			return;
 		}
-
-    const { cooldowns } = client;
 
     if (!cooldowns.has(command.data.name)) {
       cooldowns.set(command.data.name, new Collection());
