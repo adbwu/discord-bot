@@ -19,7 +19,6 @@ module.exports = {
 
     if (!cooldowns.has(command.data.name)) {
       cooldowns.set(command.data.name, new Collection());
-      console.log(cooldowns);
     } 
 
     const now = Date.now();
