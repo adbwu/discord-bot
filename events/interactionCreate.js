@@ -19,12 +19,13 @@ module.exports = {
 
     if (!cooldowns.has(command.data.name)) {
       cooldowns.set(command.data.name, new Collection());
+      console.log(cooldowns);
     } 
 
     const now = Date.now();
     const timestamps = cooldowns.get(command.data.name);
     const defaultCooldownDuration = 3;
-    const cooldownAmount = (command.cooldown ?? defaultCooldownDuration);
+    const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
     if (timestamps.has(interaction.user.id)) {
       const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
@@ -38,6 +39,7 @@ module.exports = {
     timestamps.set(interaction.user.id, now);
     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
+    console.log(cooldowns);
     //tries to execute command
 		try {
 			await command.execute(interaction);
