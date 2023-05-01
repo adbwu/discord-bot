@@ -11,6 +11,6 @@ module.exports = {
 		// await interaction.reply({ content: 'Pong!', ephemeral: true });
     await interaction.deferReply();
     await wait(000);
-    await interaction.editReply('Pong again');
+    await interaction.editReply('Pong!');
 	},
 };
