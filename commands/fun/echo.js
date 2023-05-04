@@ -6,7 +6,8 @@ module.exports = {
     .setDescription('Echoes user input string.')
     .addStringOption(option =>
       option.setName('input')
-        .setDescription('The input to echo back')),
+        .setDescription('The input to echo back'))
+        .setRequired(true),
   async execute(interaction) {
     const input = interaction.options.getString('input') ?? 'No input provided';
 
