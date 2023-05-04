@@ -10,6 +10,8 @@ module.exports = {
 	async execute(interaction) {
 		// await interaction.reply({ content: 'Pong!', ephemeral: true });
     await interaction.deferReply({ephemeral: true});
+    const message = await interaction.fetchReply();
+    console.log(message);
     await wait(4000);
     await interaction.editReply('Pong!');
 	},
