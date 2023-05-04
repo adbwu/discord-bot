@@ -10,6 +10,6 @@ module.exports = {
   async execute(interaction) {
     const input = interaction.options.getString('input') ?? 'No input provided';
 
-    await interaction.reply(`'Echo: ${input}`);
+    await interaction.reply(`Echo: ${input}`);
   },
 };
