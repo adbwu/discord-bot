@@ -7,20 +7,26 @@ module.exports = {
     .addStringOption(option =>
       option.setName('command')
         .setDescription('The command to reload.')
+        .setRequired(true))
+    .addStringOption(option =>
+      option.setName('file')
+        .setDescription('The file of the command to reload.')
         .setRequired(true)),
   async execute(interaction) {
-    const commandName = interaction.options.getString('command', true).toLowerCase;
+    const commandName = interaction.options.getString('command', true);
+    const commandFile = interaction.options.getString('file', true);
+    
     const command = interaction.client.commands.get(commandName);
     
     if (!command) {
       return interaction.reply(`There is no command with name \` ${commandName}\`!`);
     }
 
-    delete require.cache[require.resolve(`./${command.data.name}.js`)];
+    delete require.cache[require.resolve(`../${commandFile}/${command.data.name}.js`)];
 
     try {
       interaction.client.commands.delete(command.data.name);
-      const newCommand = require(`./${command.data.name}.js`);
+      const newCommand = require(`../${commandFile}/${command.data.name}.js`);
       interaction.client.commands.set(newCommand.data.name, newCommand);
       await interaction.reply(`Command \`${newCommand.data.name}\` was reloaded!`);
     } catch (error) {

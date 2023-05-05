@@ -13,6 +13,6 @@ module.exports = {
     const message = await interaction.fetchReply();
     console.log(message);
     await wait(4000);
-    await interaction.editReply('Pong!');
+    await interaction.editReply('Pong Pong!');
 	},
 };
